@@ -1,0 +1,29 @@
+id	bindPointInfo
+int	string
+士兵id	效果绑定节点信息(格式：节点名1;特效名1|节点名2;特效名2) 
+1305	Bip001 R Toe0;VFX_Self_XiaoEMo_Bip001 R Toe0_Bip001 L Toe0|Bip001 L Toe0|;VFX_Self_XiaoEMo_Bip001 R Toe0_Bip001 L Toe0|Node_Lefthand;VFX_Self_XiaoEMo_Node_Lefthand_Node_Righthand|Node_Righthand;VFX_Self_XiaoEMo_Node_Lefthand_Node_Righthand
+1304	Bip001 R UpperArm;VFX_Self_YouLing_jian_Bip001 R UpperArm_Bip001 L UpperArm|Bip001 L UpperArm|;VFX_Self_YouLing_jian_Bip001 R UpperArm_Bip001 L UpperArm|Bip001 Pelvis;VFX_Self_YouLing_di_Bip001 Pelvis
+3
+4
+2305	Bone002;VFX_Self_WuYao_di_Bone002|Node_Righthand;VFX_Self_WuYao_shou_Node_Lefthand_Node_Righthand|Node_Lefthand;VFX_Self_WuYao_shou_Node_Lefthand_Node_Righthand|Bip001 Spine1;VFX_Self_WuYao_xiong_Bip001 Spine1
+
+
+
+
+6
+7	Bip001 Prop1;VFX_Self_KaDeJia_wuqi
+8
+9
+10
+11
+12	Bip001 Prop2;VFX_Self_YouDiAn_wuqi002_Bip001 Prop2|Bip001 Prop1;VFX_Self_YouDiAn_wuqi001_Bip001 Prop1
+
+
+13	Bip001 Prop1;VFX_Self_KaDeJia_wuqi
+
+14
+15
+16
+17
+18	Bip001 Prop2;VFX_yilidan_wuqi002|Bip001 Prop1;VFX_yilidan_wuqi001|Node_Head;VFX_yilidan_yanjing01
+

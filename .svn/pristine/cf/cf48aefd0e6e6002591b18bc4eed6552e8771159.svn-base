@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.douqu.game.main.database.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.douqu.game.core.database.model.UserModel">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="account" property="account" jdbcType="VARCHAR"/>
+        <result column="deviceId" property="deviceId" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="ip" property="ip" jdbcType="VARCHAR"/>
+        <result column="channel" property="channel" jdbcType="TINYINT"/>
+        <result column="createTime" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="isDel" property="isDel" jdbcType="TINYINT"/>
+    </resultMap>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select *
+        from user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <insert id="insert" parameterType="com.douqu.game.core.database.model.UserModel"
+            useGeneratedKeys="true" keyProperty="id">
+    insert into user (account, deviceId,
+      password, ip, channel, 
+      createTime, isDel)
+    values (#{account,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{channel,jdbcType=TINYINT}, 
+      NOW(), 0)
+    </insert>
+
+    <select id="getByKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT * FROM user WHERE account=#{key} or deviceId=#{key} LIMIT 1
+    </select>
+
+</mapper>

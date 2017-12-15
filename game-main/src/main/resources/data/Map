@@ -1,0 +1,48 @@
+id	name	mapType
+int	string	int
+地图ID	地图名字	与寻路有关 1 纵向 2 横向
+1	Scene_JingJiChang01	1
+101	Scene_JianYu01	2
+102	Scene_JianYu02	2
+103	Scene_XueSe01	2
+104	Scene_XueSe02	2
+105	Scene_TiDao01 	2
+106	Scene_TiDao02	2
+211	Scene_LMGongCheng01	1
+221	Scene_BLGongCheng01	1
+231	Scene_TZGongCheng01 	1
+311	Scene_SenLing01	1
+321	Scene_Snow01	1
+331	Scene_Snow01	1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

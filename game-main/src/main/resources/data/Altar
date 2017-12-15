@@ -1,0 +1,8 @@
+id	name	icon	altarDrops	needAssets	openLevel
+int	string	string	string	string	int
+ID	名字	模型	掉落奖励	消耗钻石	开启等级
+1	经验祭坛	altar_icon_jy	1;100;101	1;50|1;100	1
+2	金币祭坛	altar_icon_jb	1;100;301	1;0|1;20	1
+3	饰品强化	altar_icon_qhs	1;100;401	1;100	1
+4	装备祭坛	altar_icon_zhb	1;28;201|29;43;202|44;58;203|59;66;204|67;100;205	1;0|1;100	1
+5	饰品精炼	altar_icon_jls	1;100;501	1;100	2

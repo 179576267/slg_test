@@ -1,0 +1,11 @@
+id	icon	uiIcon	name	vip	remark
+int	string	string	string	int	string
+资源ID	图标	ui图标	资源名称	是否跟RMB相关(1相关0不相关)	备注
+1	Item_ZuanShi	common01_icon_diamond	钻石	1	用来在商城购买道具
+2	Item_ZhuJiangJingYan	common01_icon_store	玩家经验	0	用来给玩家提升主将等级
+11	Item_JinBi	common01_icon_gold	金币	0	用来强化各种装备和日常消耗
+12	Item_LiangShi	common01_icon_food	军粮	0	每次战场出征都会消耗军粮
+13	Item_YingHun	common01_icon_store	英魂	0	士兵分解后会获得英魂
+101	Item_RongYu	common01_icon_arena	荣誉	0	竞技场中获胜将会获得
+102	Item_GangDing	common01_icon_gangding	钢锭	0	用来购买装备材料
+103	Item_JiFen	common01_icon_jifen	积分	0	官阶战中用来兑换奖励

@@ -1,0 +1,4 @@
+id	name	type	remark
+int	string	int	string
+ID	消息名	展示类型	说明
+603	MsgID_Instance_ReceiveAward	2	领取副本奖励

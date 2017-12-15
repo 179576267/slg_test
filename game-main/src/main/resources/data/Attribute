@@ -1,0 +1,17 @@
+id	name	remark
+int	string	string
+id	属性英文名	属性中文名
+101	atk	攻击
+102	def	防御
+103	hp	生命
+104	moveSpeed	移动速度
+105	attackSpeed	普通攻击间隔
+201	power	力量
+202	agility	敏捷
+203	wisdom	智力
+301	cri	暴击率
+302	rec	抗暴率
+303	add	增伤率
+304	exd	免伤率
+305	hit	命中率
+306	eva	闪避率

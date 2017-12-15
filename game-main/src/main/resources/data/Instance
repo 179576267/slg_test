@@ -1,0 +1,6 @@
+id	name	levels	bg	unLockInstance	starBox
+int	string	string	string	int	string
+ID	名字	关卡列表	背景图片	解锁副本	星级宝箱
+1	第一章 暴风城监狱	1;2;3;4;5;6;7;8;9;10	photo_expedition_jy_1590x820	2	1;10;1011|2;20;1012|3;30;1013
+2	第二章 血色修道院	11;12;13;14;15;16;17;18;19;20	photo_expedition_xsxdy_1590x820	3	1;10;1021|2;20;1022|3;30;1023
+3	第三章 剃刀高地	21;22;23;24;25;26;27;28;29;30	photo_expedition_tdgd_1590x820	0	1;10;1031|2;20;1032|3;30;1033

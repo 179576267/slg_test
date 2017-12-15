@@ -1,0 +1,3 @@
+2017-11-17 ArenaData totalWinCount //竞技场胜利总次数
+2017-11-22 ArenaData todayTotalChallengeTime//当天总的可挑战次数
+2017-11-22 OfficialRankData todayTotalChallengeTime//当天总的可挑战次数

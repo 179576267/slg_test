@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.douqu.game.main.database.mapper.ServerMapper" >
+  <resultMap id="BaseResultMap" type="com.douqu.game.core.database.model.ServerModel" >
+    <id column="id" property="id" />
+    <result column="playerIndex" property="playerIndex"  />
+    <result column="goodsIndex" property="goodsIndex" />
+    <result column="worldInfo" property="worldInfo" />
+  </resultMap>
+
+  <insert id="create" parameterType="com.douqu.game.core.database.model.ServerModel" >
+    INSERT INTO (id, playerIndex, goodsIndex)
+    VALUES (#{id},#{playerIndex},#{goodsIndex})
+  </insert>
+
+  <select id="find" resultMap="BaseResultMap">
+    SELECT * FROM server LIMIT 1
+  </select>
+
+  <update id="update">
+    UPDATE server
+    SET goodsIndex = #{goodsIndex}, playerIndex = #{playerIndex}, worldInfo =#{worldInfo}
+    WHERE id = #{id}
+  </update>
+</mapper>

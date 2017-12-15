@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.douqu.game.auth.database.mapper.RoleRecordMapper">
+    <resultMap id="BaseResultMap" type="com.douqu.game.auth.database.model.RoleRecordModel">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="serverId" property="serverId" jdbcType="INTEGER"/>
+        <result column="account" property="account" jdbcType="VARCHAR"/>
+        <result column="ip" property="ip" jdbcType="VARCHAR"/>
+        <result column="deviceId" property="deviceId" jdbcType="VARCHAR"/>
+        <result column="avatar" property="avatar" jdbcType="VARCHAR"/>
+        <result column="level" property="level" jdbcType="INTEGER" />
+        <result column="channel" property="channel" jdbcType="TINYINT" />
+        <result column="playerName" property="playerName" jdbcType="VARCHAR"/>
+        <result column="createTime" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select * from role_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <insert id="insert" parameterType="com.douqu.game.auth.database.model.RoleRecordModel"
+            useGeneratedKeys="true" keyProperty="id">
+    insert into role_record (serverId, account,ip, deviceId, avatar, level,channel, playerName, createTime, updateTime)
+      values (#{serverId}, #{account}, #{ip}, #{deviceId}, #{avatar}, #{level}, #{channel},
+      #{playerName}, NOW(), NOW())
+  </insert>
+
+    <select id="getByAccount" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select * from role_record where account = #{account} LIMIT 1
+    </select>
+
+    <select id="getByDeviceId" resultMap="BaseResultMap">
+        select * from role_record where deviceId=#{deviceId}
+    </select>
+
+    <select id="getByPlayName" resultMap="BaseResultMap">
+        select * from role_record where playerName=#{playerName}
+    </select>
+
+    <select id="gerRecentLoginServerId" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select serverId from role_record where account = #{key} or deviceId = #{key}
+        ORDER BY updateTime DESC
+        LIMIT 1
+    </select>
+
+    <select id="gerRecordsByAccountOrDeviceId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select * from role_record where account = #{key} or deviceId = #{key}
+    </select>
+
+    <select id="gerRecordInServer" resultMap="BaseResultMap">
+        select * from role_record where account = #{key} or deviceId = #{key} AND serverId = #{serverId} LIMIT 1
+    </select>
+
+    <update id="update">
+        UPDATE role_record set updateTime = NOW()
+        <if test="avatar != null and avatar != ''">
+            ,avatar=#{avatar}
+        </if>
+        <if test="playerName != null and playerName != ''">
+            ,playerName=#{playerName}
+        </if>
+        <if test="level != null and level != 0">
+            ,level=#{level}
+        </if>
+        where account = #{key} or deviceId = #{key} AND serverId = #{serverId}
+    </update>
+
+    <update id="updateLoginTime">
+        UPDATE role_record set updateTime = NOW() where account = #{key} or deviceId = #{key} AND serverId = #{serverId}
+    </update>
+</mapper>

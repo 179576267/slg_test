@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Class-Path: libs/snakeyaml-1.17.jar libs/protobuf-java-3.2.0.jar libs/
+ log4j-1.2.17.jar libs/httpmime-4.5.1.jar libs/gson-2.7.jar libs/jedis
+ -2.9.0.jar libs/commons-pool2-2.4.2.jar libs/bean-engine.jar libs/htt
+ pclient-4.5.1.jar libs/commons-codec-1.9.jar libs/bean-engine.jar lib
+ s/netty-all-4.1.8.Final.jar libs/httpcore-4.4.3.jar libs/druid-1.0.26
+ .jar libs/commons-logging-1.2.jar
+Main-Class: com.douqu.game.battle.StartServer
+

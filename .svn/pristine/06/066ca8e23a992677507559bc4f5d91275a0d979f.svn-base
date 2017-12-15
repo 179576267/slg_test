@@ -1,0 +1,7 @@
+id	name	model	pos	next	content
+int	string	string	int	int	string
+编号	名字	模型	位置	下一句	内容
+
+
+
+

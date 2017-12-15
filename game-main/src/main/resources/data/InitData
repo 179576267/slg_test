@@ -1,0 +1,4 @@
+id	initAssets	initProps	initCards	crystal	crystalGrow	defaultPlayerHead
+int	string	string	string	string	string	string
+ID	初始资源	初始道具	初始卡牌	水晶	水晶增长	初始化玩家头像
+1	0	0	1104;1105;1202;1203;1303;1305	2;4	18000;6000|25000;5000|300000;4000	herohead_FengShe2

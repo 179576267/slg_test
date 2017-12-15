@@ -1,0 +1,14 @@
+rootProject.name = 'slg_game'
+
+include 'game-core'
+
+include 'game-auth'
+
+include 'game-battle'
+
+include 'game-gm'
+
+include 'game-chat'
+
+include 'game-main'
+

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.douqu.game.main.database.mapper.PlayerMapper" >
+  <resultMap id="BaseResultMap" type="com.douqu.game.core.database.model.PlayerModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="objectIndex" property="objectIndex" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="INTEGER" />
+    <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+    <result column="camp" property="camp" jdbcType="TINYINT" />
+    <result column="master" property="master" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="vipLevel" property="vipLevel" jdbcType="INTEGER" />
+    <result column="exp" property="exp" jdbcType="INTEGER" />
+    <result column="vipExp" property="vipExp" jdbcType="INTEGER" />
+    <result column="fc" property="fc" jdbcType="INTEGER" />
+    <result column="bagInfo" property="bagInfo" />
+    <result column="challengeInfo" property="challengeInfo" />
+    <result column="taskInfo" property="taskInfo" />
+    <result column="boonInfo" property="boonInfo" />
+    <result column="settingInfo" property="settingInfo" />
+    <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="isDel" property="isDel" jdbcType="TINYINT" />
+    <result column="online" property="online" jdbcType="TINYINT" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="lastLoginTime" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="lastLogoutTime" property="lastLogoutTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <insert id="insert" parameterType="com.douqu.game.core.database.model.PlayerModel" useGeneratedKeys="true" keyProperty="id">
+    insert into player (objectIndex, uid, `name`, avatar, camp, master, `level`, exp,vipLevel,vipExp, money, fc, bagInfo,challengeInfo,taskInfo,boonInfo,settingInfo,createTime,lastLoginTime, isDel, online)
+    values
+    (#{objectIndex},#{uid},#{name},#{avatar},#{camp},#{master},#{level},#{exp},#{vipLevel},#{vipExp},#{money},#{fc},#{bagInfo},#{challengeInfo},#{taskInfo},#{boonInfo},#{settingInfo}, NOW(), NOW(), FALSE, FALSE)
+  </insert>
+
+  <update id="update" parameterType="com.douqu.game.core.database.model.PlayerModel">
+    UPDATE player
+    SET `name` = #{name},avatar = #{avatar},camp = #{camp}, master = #{master},
+       `level` = #{level},exp = #{exp},vipLevel=#{vipLevel},vipExp=#{vipExp},fc = #{fc},online=#{online},money = #{money},
+        bagInfo = #{bagInfo}, challengeInfo = #{challengeInfo}, taskInfo=#{taskInfo},
+        boonInfo = #{boonInfo}, settingInfo = #{settingInfo}
+        <if test="lastLogoutTime != null">
+          , lastLogoutTime = #{lastLogoutTime}
+        </if>
+    WHERE objectIndex = #{objectIndex}
+  </update>
+
+  <update id="login">
+    UPDATE player
+    SET lastLoginTime = #{lastLoginTime}
+    WHERE id = #{playerId}
+  </update>
+
+
+  <select id="getPlayerByUid" resultMap="BaseResultMap">
+    SELECT p.*,IFNULL(u.account,u.deviceId) AS account,u.channel AS channel FROM player p LEFT JOIN `user` u ON p.uid = u.id WHERE p.uid = #{uid}
+  </select>
+
+  <select id="getPlayerByIndex" resultMap="BaseResultMap">
+    SELECT p.*,IFNULL(u.account,u.deviceId) AS account ,u.channel AS channel FROM player p LEFT JOIN `user` u ON p.uid = u.id WHERE p.objectIndex = #{objectIndex}
+  </select>
+
+  <select id="getPlayerByName" resultMap="BaseResultMap">
+    SELECT p.*,IFNULL(u.account,u.deviceId) AS account ,u.channel AS channel FROM player p LEFT JOIN `user` u ON p.uid = u.id WHERE p.name = #{name}
+  </select>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    SELECT p.*,IFNULL(u.account,u.deviceId) AS account FROM player p LEFT JOIN `user` u ON p.uid = u.id
+    ORDER BY id DESC
+  </select>
+
+  <select id="findAllCount" resultType="java.lang.Integer">
+    SELECT COUNT(1) FROM player
+  </select>
+
+  <select id="findList" resultMap="BaseResultMap">
+    SELECT p.*,IFNULL(u.account,u.deviceId) AS account FROM player p LEFT JOIN `user` u ON p.uid = u.id
+    ORDER BY id DESC
+    LIMIT #{start},#{count}
+  </select>
+
+  <select id="offlineMatch" resultMap="BaseResultMap">
+    SELECT t1.*
+    FROM
+        player AS t1
+    JOIN (
+        SELECT
+            ROUND(
+                RAND() * (
+                    (SELECT MAX(id) FROM player WHERE isDel = FALSE) - (SELECT MIN(id) FROM player WHERE isDel = FALSE)
+                ) + (SELECT MIN(id) FROM player WHERE isDel = FALSE)
+            ) AS id
+    ) AS t2
+    WHERE t1.id >= t2.id AND t1.isDel = FALSE AND t1.grade = #{grade}
+    <if test="indexs != null and indexs.length > 0">
+      AND t1.objectIndex NOT IN
+      <foreach collection="indexs" item="index" open="(" close=")" separator=",">
+        #{index}
+      </foreach>
+    </if>
+    LIMIT 1
+  </select>
+
+
+</mapper>

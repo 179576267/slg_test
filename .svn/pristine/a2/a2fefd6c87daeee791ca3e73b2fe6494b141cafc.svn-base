@@ -1,0 +1,54 @@
+
+profile = dev
+
+debug=true
+
+logging.level.com.douqu.game.auth=debug
+
+spring.http.encoding.force=true
+
+spring.datasource.name = mysql
+spring.datasource.url = jdbc:mysql://192.168.2.202:3306/slg_auth?useUnicode=true&characterEncoding=utf-8&autoReconnect=true
+#spring.datasource.url = jdbc:mysql://58.87.93.57:3306/hoodle?useUnicode=true&characterEncoding=utf-8&autoReconnect=true
+spring.datasource.username = root
+spring.datasource.password = wzf
+#spring.datasource.password = 1MxRRmsERxhP7soh
+spring.datasource.type = com.alibaba.druid.pool.DruidDataSource
+spring.datasource.driver-class-name = com.mysql.jdbc.Driver
+spring.datasource.filters = stat,wall
+spring.datasource.max-active = 20
+spring.datasource.initial-size = 10
+spring.datasource.max-idle = 60000
+spring.datasource.min-idle = 1
+# 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+spring.datasource.time-between-eviction-runs-millis = 60000
+# 配置一个连接在池中最小生存的时间，单位是毫秒
+spring.datasource.min-evictable-idle-time-millis = 300000
+spring.datasource.validation-query = select 'x'
+spring.datasource.test-while-idle = true
+spring.datasource.test-on-borrow = false
+spring.datasource.test-on-return = false
+# 打开PSCache，并且指定每个连接上PSCache的大小
+spring.datasource.pool-prepared-statements = true
+spring.datasource.max-open-prepared-statements = 20
+
+
+mybatis.typeAliasesPackage=com.douqu.game.core.database.model
+mybatis.mapperLocations=classpath*:com/douqu/game/auth/database/mapper/*.xml
+
+# REDIS (RedisProperties)
+#spring.redis.host=localhost
+#spring.redis.password=
+#spring.redis.port=6379
+#spring.redis.pool.max-idle=8 # pool settings ...
+#spring.redis.pool.min-idle=0
+#spring.redis.pool.max-active=8
+#spring.redis.pool.max-wait=-1
+
+executor.corePoolSize = 10
+executor.maxPoolSize = 1000
+executor.queueCapacity = 1000
+executor.keepAliveSeconds = 300
+
+
+context.listener.classes=com.douqu.game.auth.listener.ApplicationEventListener
